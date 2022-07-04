@@ -25,10 +25,11 @@ public class CardDemo {
         ArrayList<Card> allCards = new ArrayList<>();
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
-                spadesList.add(new Card(rank, suit));
+                allCards.add(new Card(rank, suit));
             }
         }
-        System.out.println(spadesList);
+
+        System.out.println(allCards);
 
 
     }
