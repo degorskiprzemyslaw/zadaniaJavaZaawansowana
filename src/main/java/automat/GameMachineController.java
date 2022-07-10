@@ -1,6 +1,6 @@
 package automat;
 
-import java.util.Scanner;
+
 
 public class GameMachineController {
 
@@ -11,16 +11,23 @@ public class GameMachineController {
         gameMachine.addGame(new Game("Prince of Persia", 41));
         gameMachine.addGame(new Game("LittleBigPlanet 3", 28));
         gameMachine.addGame(new Game("The Legend of Zelda: Breath of the Wild", 32));
+        boolean isPurchaseValid;
 
-        try{
-            gameMachine.buyAGame();
-        } catch (NoSuchTitleException | NotEnoughMoneyException e){
-            System.out.println(e.getMessage());
+        do {
+            try {
+                isPurchaseValid = true;
+                gameMachine.buyAGame();
+            } catch (NoSuchTitleException | NotEnoughMoneyException e) {
+                System.out.println(e.getMessage());
+                isPurchaseValid = false;
+            }
+        } while (!isPurchaseValid);
 
-        }
+
     }
-
 }
+
+
 
 
 

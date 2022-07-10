@@ -11,25 +11,28 @@ public class GameMachine {
         return games;
     }
 
-    public void addGame(Game game){
+    public void addGame(Game game) {
         games.add(game);
     }
 
-    public void buyAGame() throws NoSuchTitleException, NotEnoughMoneyException  {
+    public void buyAGame() throws NoSuchTitleException, NotEnoughMoneyException {
         String gameName = getGameTitleFromUser();
 
+
         for (Game game : games) {
-            if(game.getGameTitle().equals(gameName)){
+            if (game.getGameTitle().equals(gameName)) {
                 int gamePrice = getMoneyFromUser(game);
-                if(gamePrice > game.getGamePrice()){
-                    System.out.println("Dziękuję za zakup. Zwracam resztę w wysokości: " + (gamePrice - game.getGamePrice()) + " zł");
-                    return;
-                } else if (gamePrice == game.getGamePrice()){
-                    System.out.println("Dziękuję za zakup. Miłego dnia!");
-                    return;
-                } else{
-                    throw new NotEnoughMoneyException("Wrzucona suma pieniędzy jest za mała");
-                }
+                    if (gamePrice > game.getGamePrice()) {
+                        System.out.println("Dziękuję za zakup. Zwracam resztę w wysokości: " + (gamePrice - game.getGamePrice()) + " zł");
+                        return;
+                    } else if (gamePrice == game.getGamePrice()) {
+                        System.out.println("Dziękuję za zakup. Miłego dnia!");
+                        return;
+                    } else {
+
+                        throw new NotEnoughMoneyException("Wrzucona suma pieniędzy jest za mała");
+                    }
+
             }
 
         }
@@ -37,13 +40,30 @@ public class GameMachine {
 
     }
 
-    private String getGameTitleFromUser(){
+    public void assessMoneyValue(Game game) throws NotEnoughMoneyException {
+
+        int gamePrice = getMoneyFromUser(game);
+        if (gamePrice > game.getGamePrice()) {
+            System.out.println("Dziękuję za zakup. Zwracam resztę w wysokości: " + (gamePrice - game.getGamePrice()) + " zł");
+            return;
+        } else if (gamePrice == game.getGamePrice()) {
+            System.out.println("Dziękuję za zakup. Miłego dnia!");
+            return;
+        } else {
+
+            throw new NotEnoughMoneyException("Wrzucona suma pieniędzy jest za mała");
+        }
+    }
+
+
+    private String getGameTitleFromUser() {
         System.out.println("Wybierz grę, którą chcesz zakupić: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
 
     }
-    private int getMoneyFromUser(Game game){
+
+    private int getMoneyFromUser(Game game) {
         System.out.println("Zaplac " + game.getGamePrice() + " zł");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
