@@ -337,15 +337,27 @@ public class Board {
         if (beatEnemy) {
             beatCounter = enemies.length - 1;
             System.out.println("Zbiłeś przeciwnika! Zostało do zbicia jeszcze " + beatCounter);
-            for (int i = 0; i < enemies.length - 1; i++)
+            for(int i = 0; i < enemies.length; i++){
+                if(enemies[i] == null){
+                    for(int j = i; j < enemies.length - 1; j++){
+                       enemies[j] = enemies[j+1];
+                    }
+                }
+            }
+            for(int i = 0; i< enemiesTemp.length; i++){
+                enemiesTemp[i] = enemies[i];
+            }
+
+
+            /*for (int i = 0; i < enemies.length - 1; i++)
                 {
-                for (int j = 0; j < enemies.length; j++) {
+                for (int j = i; j < enemies.length; j++) {
                     if (enemies[j] != null) {
                         enemiesTemp[i] = enemies[j];
                         break;
                     }
                 }
-            }
+            }*/
                 /*{
 
                 if(enemies[i] == null){
