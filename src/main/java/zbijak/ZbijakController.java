@@ -55,7 +55,7 @@ public class ZbijakController {
     private int welcomeMessage(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t Gra w Zbijaka\n" + "\t\t---------------\n\n" +
-                "\tWygrywasz, gdy zbijesz wszystkich przeciwników\n" +
+                "\tWygrywasz (&), gdy zbijesz wszystkich przeciwników (X)\n" +
                         "\tZbijesz przeciwnika, gdy wejdziesz na jego pole\n" +
                 "\tPoruszasz się klawiszami:\nW - góra,\nS - dół, \nA - lewo, \nD - prawo\n\n" +
                 "\tPodaj, wielkość planszy: ");
