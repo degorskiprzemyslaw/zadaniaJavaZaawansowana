@@ -85,55 +85,63 @@ public class Board {
         }
     }
 
-    /*public void enemyScanMovementForPlayer(){ // nie dziala
+
+
+    public void enemyScanMovementForPlayer(int i){ // nie dziala
+        boolean isUpAble = true;
+        boolean isDownAble = true;
+        boolean isLeftAble = true;
+        boolean isRightAble = true;
         int scanUp;
         int scanDown;
         int scanLeft;
         int scanRight;
-        for(int i = 0; i < enemies.length; i++){
+        //for(int i = 0; i < enemies.length; i++){
             scanUp = enemies[i].getxPosition() - 1;
             scanDown = enemies[i].getxPosition() + 1;
             scanLeft = enemies[i].getyPosition() - 1;
             scanRight = enemies[i].getyPosition() + 1;
             if(scanUp < 0){
-                scanUp = enemies[i].getxPosition();
+                isUpAble = false;
             }
             if(scanDown > length - 1){
-                scanDown = enemies[i].getxPosition();
+                isDownAble = false;
             }
             if(scanLeft < 0){
-                scanLeft = enemies[i].getyPosition();
+                isLeftAble = false;
             }
             if(scanRight > length - 1){
-                scanRight = enemies[i].getyPosition();
+                isRightAble = false;
             }
-            if(scanUp == player.getxPosition()){
+            if(scanUp == player.getxPosition() && enemies[i].getyPosition() == player.getyPosition() && isUpAble){
                 enemyUpMovement(i);
             }
 
-            if(scanDown == player.getxPosition()){
+            if(scanDown == player.getxPosition() && enemies[i].getyPosition() == player.getyPosition() && isDownAble){
                 enemyDownMovement(i);
             }
 
-            if(scanLeft == player.getyPosition()){
+            if(scanLeft == player.getyPosition() && enemies[i].getxPosition() == player.getxPosition() && isLeftAble){
                 enemyLeftMovement(i);
             }
 
-            if(scanRight == player.getyPosition()){
+            if(scanRight == player.getyPosition() && enemies[i].getxPosition() == player.getxPosition() && isRightAble){
                 enemyRightMovement(i);
             }
 
         }
 
-    }*/
+    //}
 
     public void enemyMovement() {
         Random r = new Random();
         for (int i = 0; i < enemies.length; i++) {
-           /* if ((player.getxPosition() - enemies[i].getxPosition() == Math.abs(1) && player.getyPosition() == enemies[i].getyPosition())
-                    || (player.getyPosition() - enemies[i].getyPosition() == Math.abs(1)) && (player.getxPosition() == enemies[i].getxPosition())) {
-                enemyScanMovementForPlayer();
-            } else {*/ //nie dziala
+            if ((Math.abs(player.getxPosition() - enemies[i].getxPosition()) == 1 && player.getyPosition() == enemies[i].getyPosition())
+                    || (Math.abs(player.getyPosition() - enemies[i].getyPosition()) == 1 && (player.getxPosition() == enemies[i].getxPosition()))) {
+                enemyScanMovementForPlayer(i);
+            }
+
+            else {
                 int direction = r.nextInt(4);
                 switch (direction) {
                     case 0: //up
@@ -188,7 +196,7 @@ public class Board {
                         break;
                 }
             }
-        }
+        }}
 
 
     private void movementIfUpperLeftCorner(int i) {
